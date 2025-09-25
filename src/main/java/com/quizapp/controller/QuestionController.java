@@ -3,6 +3,7 @@ package com.quizapp.controller;
 import com.quizapp.entity.Question;
 import com.quizapp.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,22 +13,26 @@ import java.util.List;
 public class QuestionController {
     @Autowired
     QuestionService questionService;
+
     @GetMapping("allQuestions")
-    public List<Question> getAllQuestions(){
+    public ResponseEntity<List<Question>> getAllQuestions() {
         return questionService.getAllQuestions();
     }
+
     @GetMapping("/category/{category}")
-    public List<Question> getQuestionsByCategory(@PathVariable String category){
-       return questionService.getQuestionsByCategory(category);
+    public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category) {
+        return questionService.getQuestionsByCategory(category);
     }
+
     @PostMapping("/addQuestions")
-    public void addQuestions(@RequestBody List<Question> questions){
-        questionService.addQuestions(questions);
-        System.out.println("Added Successfully");
+    public ResponseEntity<String> addQuestions(@RequestBody List<Question> questions) {
+        return questionService.addQuestions(questions);
+
     }
+
     @PostMapping("/addQuestion")
-    public Question addOneQuestion(@RequestBody Question question){
-         return questionService.addOneQuestion(question);
+    public ResponseEntity<String> addOneQuestion(@RequestBody Question question) {
+        return questionService.addOneQuestion(question);
     }
 
 }
