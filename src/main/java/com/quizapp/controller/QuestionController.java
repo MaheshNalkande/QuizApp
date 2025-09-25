@@ -25,9 +25,16 @@ public class QuestionController {
         questionService.addQuestions(questions);
         System.out.println("Added Successfully");
     }
+
+
+
     @PostMapping("/addQuestion")
     public Question addOneQuestion(@RequestBody Question question){
          return questionService.addOneQuestion(question);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public void deleteQuestionById(@PathVariable Integer id){
+        questionService.deleteQuestionById(id);
+    }
 }

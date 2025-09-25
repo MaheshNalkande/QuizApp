@@ -28,6 +28,11 @@ public class QuestionService {
 // Save one Questions
     public Question addOneQuestion(Question question){
         return  questionDao.save(question);
-
     }
+//    Delete a question
+    public void deleteQuestionById(Integer id){
+        questionDao.deleteById(id);
+    }
+
+
 }
